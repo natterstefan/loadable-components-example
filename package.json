@@ -1,0 +1,31 @@
+{
+  "name": "loadable-components-example",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stefan Natter (https://natterstefan.me)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@loadable/server": "^5.13.1",
+    "@types/express": "^4.17.7",
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@loadable/babel-plugin": "^5.13.0",
+    "@loadable/webpack-plugin": "^5.13.0",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
