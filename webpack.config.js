@@ -1,5 +1,7 @@
 const path = require('path')
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const LoadablePlugin = require('@loadable/webpack-plugin')
 
 const {
   createLoadableComponentsTransformer,
@@ -13,6 +15,7 @@ module.exports = (target) => ({
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
+  entry: path.resolve(__dirname, './src/client/main-' + target + '.tsx'),
   output: {
     filename: '[name].js',
     path: path.join(DIST_PATH, target),
@@ -46,6 +49,7 @@ module.exports = (target) => ({
     ],
   },
   plugins: [
+    new LoadablePlugin(),
     new CleanWebpackPlugin({
       /**
        * during rebuilds (watch mode) we do not clean old files

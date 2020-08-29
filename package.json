@@ -6,9 +6,10 @@
   "scripts": {
     "build-client": "webpack --config webpack.client.js",
     "build-server": "webpack --config webpack.server.js",
-    "build": "rimraf ./dist && yarn build-client && yarn build-server",
-    "start": "node ./dist/server/main.js",
-    "watch": "rimraf ./dist && yarn watch-client | yarn watch-server",
+    "build-lib": "babel -d lib --extensions \".ts,.tsx\" ./src",
+    "build": "NODE_ENV=production rimraf ./dist ./lib && yarn build-client && yarn build-server && yarn build-lib",
+    "start": "NODE_ENV=production node lib/server/index.js",
+    "watch": "rimraf ./dist ./lib && yarn watch-client | yarn watch-server",
     "watch-client": "webpack --watch --config webpack.client.js",
     "watch-server": "webpack --watch --config webpack.server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,6 +26,7 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",

@@ -2,8 +2,13 @@ import React, { FunctionComponent } from 'react'
 import { Switch, Route, Link } from 'react-router-dom'
 import loadable from '@loadable/component'
 
-const Home = loadable(() => import('./home'))
-const About = loadable(() => import('./about'))
+/**
+ * TODO:
+ * - `webpackChunkName` comment does not work, needs further investigation.
+ * - test https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/dynamic-import-chunkname.md
+ */
+const Home = loadable(() => import('./pages/home'))
+const About = loadable(() => import('./pages/about'))
 
 const App: FunctionComponent = () => {
   return (

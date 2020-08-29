@@ -1,5 +1,9 @@
 module.exports = {
-  presets: ['@babel/preset-env', '@babel/preset-react'],
+  presets: [
+    '@babel/preset-env',
+    '@babel/preset-react',
+    '@babel/preset-typescript',
+  ],
   plugins: [
     /**
      * @loadable/babel-plugin is required to make SSR work with
