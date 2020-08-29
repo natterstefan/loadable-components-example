@@ -3,8 +3,9 @@
  * @see https://github.com/gregberge/loadable-components/blob/8d29fef8f02e5b0cdd4a1add3399e48089a7b97a/examples/server-side-rendering/src/server/main.js
  */
 import path from 'path'
-import express from 'express'
 import React from 'react'
+import { StaticRouter } from 'react-router'
+import express from 'express'
 import ReactDOMServer from 'react-dom/server'
 import { ChunkExtractor } from '@loadable/server'
 import App from '../client/app'
@@ -18,17 +19,29 @@ const app = express()
 
 app.use(express.static(path.join(__dirname, '../../dist/client')))
 
-app.get('/', (req, res) => {
+app.get('*', (_res, res) => {
+  /**
+   * NOTE: use `collectChunks` instead of `ChunkExtractorManager`. This was more
+   * reliable in my apps.
+   */
   const webExtractor = new ChunkExtractor({ statsFile: webStats })
-  const jsx = webExtractor.collectChunks(<App />)
+  webExtractor.collectChunks(<App />)
 
   res.set('content-type', 'text/html')
   res.send(`
     <!doctype html>
     <html lang="en">
-      <head><title>Hello Loadable Components</title></head>
+      <head>
+        <title>Hello Loadable Components</title>
+      </head>
       <body>
-        <div id="app">${ReactDOMServer.renderToString(<App />)}</div>
+        <div id="app">
+          ${ReactDOMServer.renderToString(
+            <StaticRouter>
+              <App />
+            </StaticRouter>,
+          )}
+        </div>
         ${webExtractor.getScriptTags()}
       </body>
     </html>

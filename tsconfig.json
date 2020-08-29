@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    /**
+     * Setting `module` to `esnext` is the important part to make ts-loader and
+     * babel-loader work in this example setup.
+     */
+    "module": "esnext",
+    "jsx": "react",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*"]
+}
