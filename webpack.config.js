@@ -1,5 +1,5 @@
 const path = require('path')
-const LoadablePlugin = require('@loadable/webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const {
   createLoadableComponentsTransformer,
@@ -7,18 +7,15 @@ const {
 
 const DIST_PATH = path.resolve(__dirname, './dist')
 
-module.exports = {
-  mode: 'production',
+module.exports = (target) => ({
+  mode: 'development',
   target: 'web',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
-  entry: {
-    main: [path.resolve(__dirname, './src/client/index.tsx')],
-  },
   output: {
-    path: path.join(DIST_PATH, 'client'),
     filename: '[name].js',
+    path: path.join(DIST_PATH, target),
   },
   module: {
     rules: [
@@ -48,5 +45,13 @@ module.exports = {
       },
     ],
   },
-  plugins: [new LoadablePlugin()],
-}
+  plugins: [
+    new CleanWebpackPlugin({
+      /**
+       * during rebuilds (watch mode) we do not clean old files
+       * @see https://github.com/johnagan/clean-webpack-plugin/issues/152#issuecomment-509028712
+       */
+      cleanStaleWebpackAssets: false,
+    }),
+  ],
+})

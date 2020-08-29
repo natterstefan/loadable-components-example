@@ -4,10 +4,13 @@
   "description": "Loadable Components Example",
   "private": true,
   "scripts": {
-    "build-client": "webpack",
+    "build-client": "webpack --config webpack.client.js",
     "build-server": "webpack --config webpack.server.js",
     "build": "rimraf ./dist && yarn build-client && yarn build-server",
     "start": "node ./dist/server/main.js",
+    "watch": "rimraf ./dist && yarn watch-client | yarn watch-server",
+    "watch-client": "webpack --watch --config webpack.client.js",
+    "watch-server": "webpack --watch --config webpack.server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stefan Natter (https://natterstefan.me)",
@@ -36,11 +39,14 @@
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.5",
     "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "nodemon-webpack-plugin": "^4.3.2",
     "rimraf": "^3.0.2",
     "ts-loader": "^8.0.3",
     "typescript": "^3.9.6",
     "typescript-loadable-components-plugin": "^1.0.0",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^5.1.2"
   }
 }
