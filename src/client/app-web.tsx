@@ -6,6 +6,9 @@ import loadable from '@loadable/component'
  * TODO:
  * - `webpackChunkName` comment does not work, needs further investigation.
  * - test https://github.com/benmosher/eslint-plugin-import/blob/HEAD/docs/rules/dynamic-import-chunkname.md
+ *
+ * Issue `webpackChunkName` does not work
+ * @see https://github.com/acrazing/typescript-loadable-components-plugin/issues/3
  */
 const Home = loadable(() => import('./pages/home'))
 const About = loadable(() => import('./pages/about'))

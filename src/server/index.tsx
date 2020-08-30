@@ -9,36 +9,33 @@ import express from 'express'
 import { renderToString } from 'react-dom/server'
 import { ChunkExtractor } from '@loadable/server'
 
-const nodeStats = path.resolve(
-  __dirname,
-  '../../dist/server/loadable-stats.json',
-)
-
-const webStats = path.resolve(
-  __dirname,
-  '../../dist/client/loadable-stats.json',
-)
+const nodeStats = path.resolve(__dirname, '../../dist/node/loadable-stats.json')
+const webStats = path.resolve(__dirname, '../../dist/web/loadable-stats.json')
 
 const app = express()
 
-app.use(express.static(path.join(__dirname, '../../dist/client')))
+app.use(express.static(path.join(__dirname, '../../dist/web')))
 
-app.get('*', (_res, res) => {
+app.get('*', (req, res) => {
   /**
    * node extractor is used for the server-side rendering
    * web extractor is used to get the browser-side compiled files.
    *
-   * NOTE: use `collectChunks` instead of `ChunkExtractorManager`. This was more
-   * reliable in my apps.
+   * ## Learnings
+   * - use `collectChunks` instead of `ChunkExtractorManager`. This was more
+   *   reliable in my apps.
+   * - Issue `<App />` is undefined -> resolved with `libraryTarget: 'commonjs2'`
+   * in webpack.server.js config
+   * @see https://github.com/gregberge/loadable-components/issues/620
    */
   const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats })
-
-  // BUG: App is undefined...
-  const { default: App } = nodeExtractor.requireEntrypoint('main')
+  const { default: App } = nodeExtractor.requireEntrypoint()
 
   const webExtractor = new ChunkExtractor({ statsFile: webStats })
-  const jsx = webExtractor.collectChunks(<App />)
 
+  const jsx = webExtractor.collectChunks(
+    React.createElement(App as any, { url: req.url }),
+  )
   const html = renderToString(jsx)
 
   res.set('content-type', 'text/html')
@@ -46,14 +43,12 @@ app.get('*', (_res, res) => {
     <!doctype html>
     <html lang="en">
       <head>
-        <title>Hello Loadable Components</title>
+        <title>loadable-components-example</title>
         ${webExtractor.getLinkTags()}
         ${webExtractor.getStyleTags()}
       </head>
       <body>
-        <div id="app">
-          ${html}
-        </div>
+        <div id="app">${html}</div>
         ${webExtractor.getScriptTags()}
       </body>
     </html>

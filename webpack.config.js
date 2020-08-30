@@ -1,3 +1,7 @@
+/**
+ * inspired by:
+ * @see https://github.com/gregberge/loadable-components/blob/8d29fef8f02e5b0cdd4a1add3399e48089a7b97a/examples/server-side-rendering/webpack.config.babel.js
+ */
 const path = require('path')
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -9,15 +13,20 @@ const {
 
 const DIST_PATH = path.resolve(__dirname, './dist')
 
+const production = process.env.NODE_ENV === 'production'
+const development =
+  !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+
 module.exports = (target) => ({
-  mode: 'development',
-  target: 'web',
+  name: target,
+  mode: development ? 'development' : 'production',
+  target: target,
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   entry: path.resolve(__dirname, './src/client/main-' + target + '.tsx'),
   output: {
-    filename: '[name].js',
+    filename: production ? '[name]-bundle-[chunkhash:8].js' : '[name].js',
     path: path.join(DIST_PATH, target),
   },
   module: {
@@ -35,6 +44,10 @@ module.exports = (target) => ({
            */
           {
             loader: 'babel-loader',
+            options: {
+              // caller is used in babel-config for further optimisations
+              caller: { target },
+            },
           },
           {
             loader: 'ts-loader',

@@ -7,7 +7,6 @@
      */
     "module": "esnext",
     "jsx": "react",
-    "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },

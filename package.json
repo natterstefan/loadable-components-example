@@ -9,9 +9,6 @@
     "build-lib": "babel -d lib --extensions \".ts,.tsx\" ./src",
     "build": "NODE_ENV=production rimraf ./dist ./lib && yarn build-client && yarn build-server && yarn build-lib",
     "start": "NODE_ENV=production node lib/server/index.js",
-    "watch": "rimraf ./dist ./lib && yarn watch-client | yarn watch-server",
-    "watch-client": "webpack --watch --config webpack.client.js",
-    "watch-server": "webpack --watch --config webpack.server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Stefan Natter (https://natterstefan.me)",
@@ -42,13 +39,14 @@
     "@types/react-router-dom": "^5.1.5",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
-    "nodemon-webpack-plugin": "^4.3.2",
+    "core-js": "^3.6.5",
     "rimraf": "^3.0.2",
     "ts-loader": "^8.0.3",
     "typescript": "^3.9.6",
-    "typescript-loadable-components-plugin": "^1.0.0",
+    "typescript-loadable-components-plugin": "^1.0.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-merge": "^5.1.2"
+    "webpack-merge": "^5.1.2",
+    "webpack-node-externals": "^2.5.2"
   }
 }
