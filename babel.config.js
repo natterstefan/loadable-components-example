@@ -18,6 +18,13 @@ module.exports = (api) => {
   const web = api.caller(isWebTarget)
   const webpack = api.caller(isWebpack)
 
+  /**
+   * optimize the build process performance by caching config function execution
+   * result
+   * @see https://babeljs.io/docs/en/config-files#apicache
+   */
+  api.cache(true)
+
   return {
     presets: [
       [

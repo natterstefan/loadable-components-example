@@ -11,6 +11,9 @@ SSR app and TypeScript.
 yarn
 yarn build
 yarn start
+
+# or start the watch mode
+yarn watch
 ```
 
 Open <http://localhost:3000> and check out the network tab in your dev tools.
@@ -48,12 +51,14 @@ Open <http://localhost:3000> and check out the network tab in your dev tools.
 - [How To Improve React App Performance with SSR and Rust](https://pagespeed.green/blog/how-to-improve-react-app-performance-with-ssr-and-rust-part-i-ssr)
   ([Example](https://github.com/pagespeed-green/react-ssr))
 - [React Server Side Rendering with Koa Part II](https://blog.lovemily.me/react-server-side-rendering-with-koa-part-2/)
+- [TSC Watch, Nodemon and Concurrently](https://sbcode.net/tssock/tsc-w-nodemon-conc/)
 - Alternative: [react-loadable](https://github.com/jamiebuilds/react-loadable)
 
 ## Tasks and Ideas
 
 - [ ] use `ForkTsCheckerWebpackPlugin` and use only `babel-loader`
       ([Example][1])
+- [ ] Evaluate if we `watch` mode can be optimized
 
 ## License
 

@@ -71,4 +71,9 @@ module.exports = (target) => ({
       cleanStaleWebpackAssets: false,
     }),
   ],
+  watchOptions: {
+    aggregateTimeout: 1000,
+    poll: (process.platform === 'linux' && 1000) || false, // make --watch work on linux
+    ignored: ['node_modules', 'dist', 'lib'],
+  },
 })

@@ -10,7 +10,11 @@
     "module": "esnext",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "incremental": true,
+    "outDir": "lib",
+    "sourceMap": true
   },
   "include": ["src/**/*"]
 }

@@ -1,0 +1,13 @@
+{
+  "watch": ["src"],
+  "ext": "json,ts,tsx",
+  "ignore": [
+    "__tests__/*",
+    "__stories__/*",
+    "*.js",
+    "*.js.map",
+    "*.d.ts",
+    "*.md"
+  ],
+  "delay": "1000"
+}
