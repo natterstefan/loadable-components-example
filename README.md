@@ -1,4 +1,4 @@
-# Loadable Components TypeScript Example
+# Loadable Components SSR TypeScript Example
 
 ![react](https://img.shields.io/badge/react-built%20with%20typescript-informational.svg?logo=react&logoWidth=20)
 
@@ -17,6 +17,10 @@ yarn watch
 ```
 
 Open <http://localhost:3000> and check out the network tab in your dev tools.
+
+## Preview
+
+![loadable-components-with-ssr-preview](./assets/preview.gif)
 
 ## References
 
@@ -65,4 +69,4 @@ Open <http://localhost:3000> and check out the network tab in your dev tools.
 MIT
 
 [1]: https://github.com/hiroppy/ssr-sample/blob/master/webpack.config.js#L35
-[2]: (https://github.com/gregberge/loadable-components)
+[2]: https://github.com/gregberge/loadable-components
