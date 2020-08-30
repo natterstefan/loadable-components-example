@@ -31,6 +31,10 @@ Open <http://localhost:3000> and check out the network tab in your dev tools.
 - or
   [https://github.com/Quramy/loadable-ts-transformer](loadable-ts-transformer)
 
+### Issues
+
+- [Typescript: nodeExtractor.requireEntrypoint returns undefined](https://github.com/gregberge/loadable-components/issues/620)
+
 ## Tasks
 
 - [ ] use `ForkTsCheckerWebpackPlugin` and use only `babel-loader`
