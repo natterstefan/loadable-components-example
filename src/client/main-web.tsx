@@ -1,19 +1,9 @@
 /**
  * Entry point for Webpack
+ *
+ * ATTENTION: `path` is imported first so we can set the publicPath during
+ * runtime.
+ * @see https://webpack.js.org/guides/public-path/
  */
-import React from 'react'
-import { hydrate } from 'react-dom'
-import { BrowserRouter } from 'react-router-dom'
-import { loadableReady } from '@loadable/component'
-
-import App from './app-web'
-
-loadableReady(() => {
-  const root = document.getElementById('app')
-  hydrate(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-    root,
-  )
-})
+import './path'
+import './client'

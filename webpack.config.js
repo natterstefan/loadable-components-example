@@ -31,6 +31,15 @@ module.exports = (target) => ({
   output: {
     filename: production ? '[name]-bundle-[chunkhash:8].js' : '[name].js',
     path: path.join(DIST_PATH, target),
+    /**
+     * In the client app we use `__webpack_public_path__` to set `publicPath`
+     * during runtime. We are not required to set it here actually. On the
+     * server we set it with the `ChunkExtractor`.
+     *
+     * Read more about an environment based publich-path here:
+     * @see https://webpack.js.org/guides/public-path/
+     */
+    publicPath: '/static/',
   },
   module: {
     rules: [
