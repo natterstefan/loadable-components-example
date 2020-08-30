@@ -5,6 +5,14 @@
 This example repository illustrates how to use [loadable-components][2] with an
 SSR app and TypeScript.
 
+## Features
+
+- loadable-components with full support for Client- and Server-Side Rendering
+- ReactJS Frontend
+- NodeJS Backend
+- TypeScript
+- change webpack's `publicPath` during runtime
+
 ## Start
 
 ```bash
