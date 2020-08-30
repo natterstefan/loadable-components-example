@@ -4,6 +4,7 @@
  */
 const path = require('path')
 
+const webpack = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const LoadablePlugin = require('@loadable/webpack-plugin')
 
@@ -20,6 +21,8 @@ const development =
 module.exports = (target) => ({
   name: target,
   mode: development ? 'development' : 'production',
+  // include source maps only in dev mode (https://webpack.js.org/configuration/devtool/)
+  devtool: development ? 'cheap-module-source-map' : undefined,
   target: target,
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -70,6 +73,7 @@ module.exports = (target) => ({
        */
       cleanStaleWebpackAssets: false,
     }),
+    new webpack.WatchIgnorePlugin([/\.js$/, /\.d\.ts$/]),
   ],
   watchOptions: {
     aggregateTimeout: 1000,
