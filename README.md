@@ -12,6 +12,8 @@ SSR app and TypeScript.
 - NodeJS Backend
 - TypeScript
 - change webpack's `publicPath` during runtime
+- with loadable routes (home and about), as well as loadable components (compare
+  when and how the image is loaded in the client).
 
 ## Start
 

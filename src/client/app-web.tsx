@@ -9,6 +9,7 @@ const App: FunctionComponent = () => {
   return (
     <div>
       <nav>
+        <h2>Navigation</h2>
         <ul>
           <li>
             <Link to="/">Home</Link>

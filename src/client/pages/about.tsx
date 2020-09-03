@@ -1,7 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
+import loadable from '@loadable/component'
+
+import Layout from '../components/layout'
+
+const Image = loadable(() => import('../components/image'))
 
 const AboutPage = () => {
-  return <div>This is the About Page</div>
+  const [showImage, setShowImage] = useState(false)
+
+  return (
+    <Layout title="About">
+      {showImage && <Image />}
+      {!showImage && (
+        <button onClick={() => setShowImage(true)}>Show Image</button>
+      )}
+    </Layout>
+  )
 }
 
 export default AboutPage

@@ -66,8 +66,20 @@ app.get('*', (req, res) => {
     <html lang="en">
       <head>
         <title>loadable-components-example</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
         ${webExtractor.getLinkTags()}
         ${webExtractor.getStyleTags()}
+        <style>
+          body {
+            font-family: 'Roboto', sans-serif;
+            background: #efefef;
+          }
+
+          #app {
+            max-width: 80%;
+            margin: 2rem auto;
+          }
+        </style>
       </head>
       <body>
       <script>

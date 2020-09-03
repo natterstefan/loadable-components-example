@@ -1,7 +1,12 @@
 import React from 'react'
 
-const HomePage = () => {
-  return <div>This is the Home Page</div>
-}
+import Layout from '../components/layout'
+import Image from '../components/image'
+
+const HomePage = () => (
+  <Layout title="Home">
+    <Image />
+  </Layout>
+)
 
 export default HomePage
